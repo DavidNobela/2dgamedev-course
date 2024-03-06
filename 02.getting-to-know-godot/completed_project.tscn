@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dw1qted83s8gw" path="res://pickups/weapon_pickup.tscn" id="6_w1fjs"]
 [ext_resource type="PackedScene" uid="uid://cq0mmphkbrvmm" path="res://levels/rooms/room_c.tscn" id="7_g7cph"]
 [ext_resource type="PackedScene" path="res://pickups/health_pickup.tscn" id="7_uk5d2"]
-[ext_resource type="PackedScene" uid="uid://wdey00p3syru" path="res://levels/background/background_blue_sky.tscn" id="11_7e8yr"]
+[ext_resource type="PackedScene" uid="uid://wdey00p3syru" path="res://levels/background_blue_sky.tscn" id="11_7e8yr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_po4yl"]
 texture = ExtResource("2_lrrw3")
