@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgqnlkgmhahto"]
+
+[ext_resource type="Texture2D" uid="uid://bniyrxn3r2v8h" path="res://assets/ship.png" id="1_2qq4k"]
+[ext_resource type="Script" path="res://sprite_2d.gd" id="2_4e3nu"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_2qq4k")
+script = ExtResource("2_4e3nu")
