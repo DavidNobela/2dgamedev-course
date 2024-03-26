@@ -8,8 +8,8 @@ var velocity := Vector2(0, 0)
 var direction := Vector2(0, 0)
 
 func _process(delta: float) -> void:
-	direction.x = Input.get_axis("move_left", "move_right")
-	direction.y = Input.get_axis("move_up", "move_down")
+	direction.x = Input.get_axis("move_left", "Move")
+
 	velocity = direction * max_speed
 	position += velocity * delta
 	if velocity.length() > 0.0:
