@@ -7,24 +7,23 @@
 
 [node name="SpaceLevel" type="Node2D"]
 
-[node name="Sprite2D" parent="." instance=ExtResource("1_en7v1")]
+[node name="Ship" parent="." instance=ExtResource("1_en7v1")]
 position = Vector2(964, 539)
 
-[node name="SideThruster2" parent="Sprite2D" instance=ExtResource("2_jo1b2")]
+[node name="SideThruster2" parent="Ship" instance=ExtResource("2_jo1b2")]
 position = Vector2(-44, 20)
 rotation = 1.42434
 
-[node name="MainThruster" parent="Sprite2D" instance=ExtResource("2_gqhbu")]
+[node name="MainThruster" parent="Ship" instance=ExtResource("2_gqhbu")]
 position = Vector2(-32, 0)
 points = PackedVector2Array(0, 0, 33.3333, 0, 66.6667, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+[node name="Camera2D" type="Camera2D" parent="Ship"]
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 
-[node name="SideThruster" parent="Sprite2D" instance=ExtResource("2_jo1b2")]
+[node name="SideThruster" parent="Ship" instance=ExtResource("2_jo1b2")]
 position = Vector2(-44, -21)
 rotation = 1.90512
-scale = Vector2(0.25, 0.25)
 
 [node name="SpaceBackground" parent="." instance=ExtResource("4_7cumu")]
