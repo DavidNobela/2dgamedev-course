@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://vy3sq24uumvu"]
 
-[ext_resource type="PackedScene" path="res://practices/L2.P1.pop_the_ball/ball.tscn" id="1_nyxov"]
-[ext_resource type="Script" path="res://practices/L2.P1.pop_the_ball/ball.gd" id="2_82wsk"]
-[ext_resource type="PackedScene" path="res://practices/L2.P1.pop_the_ball/needle.tscn" id="3_w8ucv"]
-[ext_resource type="Script" path="res://practices/L2.P1.pop_the_ball/needle.gd" id="4_dr85r"]
+[ext_resource type="PackedScene" uid="uid://bfgqh50gl65fh" path="res://addons/gdquest_practice_framework/practice_solutions/L2.P1.pop_the_ball/ball.tscn" id="1_1kxdd"]
+[ext_resource type="Script" path="res://practices/L2.P1.pop_the_ball/ball.gd" id="2_tcj6n"]
+[ext_resource type="PackedScene" uid="uid://dtvknghopx72o" path="res://addons/gdquest_practice_framework/practice_solutions/L2.P1.pop_the_ball/needle.tscn" id="3_hj0ku"]
+[ext_resource type="Script" path="res://practices/L2.P1.pop_the_ball/needle.gd" id="4_yrsvi"]
 
 [node name="PopTheBall" type="Node2D"]
 position = Vector2(960, 540)
 
-[node name="Ball" type="Area2D" parent="." instance=ExtResource("1_nyxov")]
+[node name="Ball" parent="." instance=ExtResource("1_1kxdd")]
 position = Vector2(-136, 38)
-script = ExtResource("2_82wsk")
+script = ExtResource("2_tcj6n")
 
-[node name="Ball2" type="Area2D" parent="." instance=ExtResource("1_nyxov")]
+[node name="Ball2" parent="." instance=ExtResource("1_1kxdd")]
 position = Vector2(69, 38)
-script = ExtResource("2_82wsk")
+script = ExtResource("2_tcj6n")
 
-[node name="Ball3" type="Area2D" parent="." instance=ExtResource("1_nyxov")]
+[node name="Ball3" parent="." instance=ExtResource("1_1kxdd")]
 position = Vector2(278, 38)
-script = ExtResource("2_82wsk")
+script = ExtResource("2_tcj6n")
 
-[node name="Needle" type="Area2D" parent="." instance=ExtResource("3_w8ucv")]
+[node name="Needle" parent="." instance=ExtResource("3_hj0ku")]
 position = Vector2(-399, 38)
-script = ExtResource("4_dr85r")
+script = ExtResource("4_yrsvi")
 
 [node name="ExtraVisuals" type="Node" parent="."]
 
