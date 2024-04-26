@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://0llosfos7f6p"]
+[gd_scene load_steps=3 format=3 uid="uid://0llosfos7f6p"]
 
-[ext_resource type="PackedScene" path="res://practices/L3.P2.sting_the_balloon/balloon_sting.tscn" id="1_cq1j7"]
+[ext_resource type="PackedScene" uid="uid://c80alrqqbvsnk" path="res://addons/gdquest_practice_framework/practice_solutions/L3.P2.sting_the_balloon/balloon_sting.tscn" id="1_jy8eb"]
+[ext_resource type="Script" path="res://practices/L3.P2.sting_the_balloon/balloon_sting.gd" id="2_1v5mc"]
 
 [node name="StingTheBalloon" type="Node2D"]
 metadata/_edit_horizontal_guides_ = []
 
-[node name="BalloonSting" parent="." instance=ExtResource("1_cq1j7")]
+[node name="BalloonSting" parent="." instance=ExtResource("1_jy8eb")]
+script = ExtResource("2_1v5mc")
 
 [node name="ExtraVisuals" type="Node" parent="."]
 
