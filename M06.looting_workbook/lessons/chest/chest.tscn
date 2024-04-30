@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsa517k07ta1r"]
+[gd_scene load_steps=14 format=3 uid="uid://dsa517k07ta1r"]
 
 [ext_resource type="Shader" path="res://lessons/chest/group_outline.gdshader" id="1_qmogw"]
 [ext_resource type="Script" path="res://lessons/chest/chest.gd" id="1_ulcq5"]
 [ext_resource type="Texture2D" uid="uid://c3hwsm5ugp8qw" path="res://lessons/chest/bottom.png" id="2_6yjpc"]
+[ext_resource type="PackedScene" uid="uid://0i1g0cunmseb" path="res://lessons/items/apple.tscn" id="2_reiji"]
 [ext_resource type="Texture2D" uid="uid://bnem1cahhoxdk" path="res://lessons/chest/top.png" id="3_id5ao"]
+[ext_resource type="PackedScene" uid="uid://ctqyr0ufyoktk" path="res://lessons/items/key.tscn" id="3_lbry7"]
+[ext_resource type="PackedScene" uid="uid://hdxqgspfcaur" path="res://lessons/items/potion.tscn" id="4_m62h3"]
 [ext_resource type="Texture2D" uid="uid://bu2jin246nel5" path="res://lessons/chest/lock.png" id="4_mlmjt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jehx"]
@@ -15,21 +18,6 @@ shader = ExtResource("1_qmogw")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 4.0
 shader_parameter/viewport_scale = Vector2(1, 1)
-
-[sub_resource type="Animation" id="Animation_pxr8b"]
-resource_name = "open"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/Top:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -42), Vector2(51, -101), Vector2(108, 38)]
-}
 
 [sub_resource type="Animation" id="Animation_kig16"]
 length = 0.001
@@ -46,6 +34,21 @@ tracks/0/keys = {
 "values": [Vector2(0, -42)]
 }
 
+[sub_resource type="Animation" id="Animation_pxr8b"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Top:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -42), Vector2(51, -101), Vector2(108, 38)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_on3h8"]
 _data = {
 "RESET": SubResource("Animation_kig16"),
@@ -54,6 +57,7 @@ _data = {
 
 [node name="Chest" type="Area2D"]
 script = ExtResource("1_ulcq5")
+possible_items = Array[PackedScene]([ExtResource("2_reiji"), ExtResource("3_lbry7"), ExtResource("4_m62h3")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
