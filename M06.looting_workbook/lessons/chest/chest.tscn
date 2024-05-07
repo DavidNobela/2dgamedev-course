@@ -60,7 +60,6 @@ script = ExtResource("1_ulcq5")
 possible_items = Array[PackedScene]([ExtResource("2_reiji"), ExtResource("3_lbry7"), ExtResource("4_m62h3")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -32.5)
 shape = SubResource("RectangleShape2D_5jehx")
 
