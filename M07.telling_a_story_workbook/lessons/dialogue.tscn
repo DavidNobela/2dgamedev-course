@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://2rhphrvviik5"]
+
+[ext_resource type="Theme" uid="uid://21b46fm6v6lr" path="res://lessons/main_theme.tres" id="1_1w73k"]
+[ext_resource type="Shader" path="res://assets/sliding_background.gdshader" id="1_k0ahx"]
+[ext_resource type="Texture2D" uid="uid://bnly1gkbxw6b5" path="res://assets/bubble_pattern.png" id="2_15xix"]
+[ext_resource type="Script" path="res://lessons/dialogue.gd" id="2_gg7at"]
+[ext_resource type="Texture2D" uid="uid://copkt78vgp37i" path="res://assets/sophia.png" id="3_jtmy6"]
+[ext_resource type="Texture2D" uid="uid://d000xjtr4iqtk" path="res://assets/emotion_regular.png" id="4_g5h0q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k6w56"]
+shader = ExtResource("1_k0ahx")
+shader_parameter/bg_color = Color(0.980392, 0.94902, 0.72549, 1)
+shader_parameter/pattern_color = Color(0.996078, 0.878431, 0.564706, 1)
+shader_parameter/pattern_size = 256.0
+shader_parameter/pattern_sampler = ExtResource("2_15xix")
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1w73k")
+script = ExtResource("2_gg7at")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_k6w56")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Body" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 259.0
+offset_right = -121.0
+offset_bottom = 2.0
+texture = ExtResource("3_jtmy6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Expression" type="TextureRect" parent="Body"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 39.0
+offset_right = -19.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g5h0q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.019
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 424.48
+offset_right = -253.0
+offset_bottom = -562.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hello World!"
+fit_content = true
+
+[node name="NextButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -112.0
+offset_right = -14.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
