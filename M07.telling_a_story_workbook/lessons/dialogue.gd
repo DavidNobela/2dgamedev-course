@@ -2,7 +2,7 @@ extends Control
 
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var next_button: Button = %NextButton
-
+@onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 ## An array of strings. Each string contains the text we want the character to
 ## say.
 var dialogue_items: Array[String] = [
@@ -27,7 +27,11 @@ func show_text() -> void:
 	var tween := create_tween()
 	var text_appearing_duration := 1.2
 	tween.tween_property(rich_text_label, "visible_ratio", 1.0, text_appearing_duration)
-
+	var sound_max_length := audio_stream_player.stream.get_length() - text_appearing_duration
+	var sound_start_position := randf() * sound_max_length
+	audio_stream_player.play(sound_start_position)
+	tween.finished.connect(audio_stream_player.stop)
+	
 func advance() -> void:
 	current_item_index += 1
 	# If we reached the end of the dialogue, we quit the game. Otherwise, we
