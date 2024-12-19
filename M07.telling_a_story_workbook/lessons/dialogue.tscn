@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2rhphrvviik5"]
+[gd_scene load_steps=11 format=3 uid="uid://2rhphrvviik5"]
 
 [ext_resource type="Theme" uid="uid://21b46fm6v6lr" path="res://lessons/main_theme.tres" id="1_1w73k"]
 [ext_resource type="Shader" path="res://assets/sliding_background.gdshader" id="1_k0ahx"]
@@ -14,6 +14,12 @@ shader_parameter/bg_color = Color(0.980392, 0.94902, 0.72549, 1)
 shader_parameter/pattern_color = Color(0.996078, 0.878431, 0.564706, 1)
 shader_parameter/pattern_size = 256.0
 shader_parameter/pattern_sampler = ExtResource("2_15xix")
+
+[sub_resource type="InputEventAction" id="InputEventAction_4kfrw"]
+action = &"advance_text"
+
+[sub_resource type="Shortcut" id="Shortcut_8sryj"]
+events = [SubResource("InputEventAction_4kfrw")]
 
 [node name="Dialogue" type="Control"]
 layout_mode = 3
@@ -78,6 +84,7 @@ offset_right = -253.0
 offset_bottom = -562.0
 grow_horizontal = 2
 grow_vertical = 2
+bbcode_enabled = true
 text = "Hello World!"
 fit_content = true
 visible_characters = 4
@@ -97,6 +104,7 @@ offset_right = -14.0
 offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
+shortcut = SubResource("Shortcut_8sryj")
 text = "Next"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
