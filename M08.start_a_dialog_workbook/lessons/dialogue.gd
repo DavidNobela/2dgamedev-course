@@ -1,54 +1,12 @@
+@tool
+@icon("res://assets/dialogue_scene_icon.svg")
 extends Control
 
-var expressions := {
-	"happy": preload ("res://assets/emotion_happy.png"),
-	"regular": preload ("res://assets/emotion_regular.png"),
-	"sad": preload ("res://assets/emotion_sad.png"),
-}
-
-var bodies := {
-	"sophia": preload ("res://assets/sophia.png"),
-	"pink": preload ("res://assets/pink.png")
-}
 
 
 
-var dialogue_items: Array[Dictionary] = [
-	{
-		"expression": expressions["regular"],
-		"text": "[wave]Hey, wake up![/wave]\nIt's time to make video games.",
-		"character": bodies["sophia"],
-		"choices": {
-			"Let me sleep a little longer": 2,
-			"Let's do it!": 1,
-		},
-	},
-	{
-		"expression": expressions["happy"],
-		"text": "Great! Your first task will be to write a [b]dialogue tree[/b].",
-		"character": bodies["sophia"],
-		"choices": {
-			"I will do my best": 3,
-			"No, let me go back to sleep": 2,
-		},
-	},
-	{
-		"expression": expressions["sad"],
-		"text": "Oh, come on! It'll be fun.",
-		"character": bodies["pink"],
-		"choices": {
-			"No, really, let me go back to sleep": 0,
-			"Alright, I'll try": 1,
-		},
-	},
-	{
-		"expression": expressions["happy"],
-		"text": "That's the spirit! [wave]You can do it![/wave]",
-		"character": bodies["pink"],
-		"choices": {"Okay! (Quit)": - 1},
-	},
-]
-
+@export var dialogue_items: Array[DialogueItem] = []:
+	set = set_dialogue_items
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 @onready var body: TextureRect = %Body
@@ -57,14 +15,16 @@ var dialogue_items: Array[Dictionary] = [
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	show_text(0)
 
 func show_text(current_item_index: int) -> void:
 	var current_item := dialogue_items[current_item_index]
-	rich_text_label.text = current_item["text"]
-	expression.texture = current_item["expression"]
-	body.texture = current_item["character"]
-	create_buttons(current_item["choices"])
+	rich_text_label.text = current_item.text
+	expression.texture = current_item.expression
+	body.texture = current_item.character
+	create_buttons(current_item.choices)
 	rich_text_label.visible_ratio = 0.0
 	var tween := create_tween()
 	var text_appearing_duration: float = current_item["text"].length() / 30.0
@@ -84,19 +44,18 @@ func show_text(current_item_index: int) -> void:
 	)
 
 
-func create_buttons(choices_data: Dictionary) -> void:
+func create_buttons(buttons_data: Array[DialogueChoice]) -> void:
 	for button in action_buttons_v_box_container.get_children():
 		button.queue_free()
-	for choice_text in choices_data:
+	for choice in buttons_data:
 		var button := Button.new()
 		action_buttons_v_box_container.add_child(button)
-		button.text = choice_text
-		var target_line_idx: int = choices_data[choice_text]
-		if target_line_idx == - 1:
+		button.text = choice.text
+		if choice.is_quit == true:
 			button.pressed.connect(get_tree().quit)
 		else:
-			
-			button.pressed.connect(show_text.bind(target_line_idx))
+			var target_line_id := choice.target_line_idx
+			button.pressed.connect(show_text.bind(target_line_id))
 
 func slide_in() -> void:
 	var slide_tween := create_tween()
@@ -105,3 +64,14 @@ func slide_in() -> void:
 	slide_tween.tween_property(body, "position:x", 0, 0.3)
 	body.modulate.a = 0
 	slide_tween.parallel().tween_property(body, "modulate:a", 1, 0.2)
+	
+func set_dialogue_items(new_dialogue_items: Array[DialogueItem]) -> void:
+	for index in new_dialogue_items.size():
+		if new_dialogue_items[index] == null:
+			new_dialogue_items[index] = DialogueItem.new()
+	dialogue_items = new_dialogue_items
+	
+func _get_configuration_warnings() -> PackedStringArray:
+	if dialogue_items.is_empty():
+		return ["You need at least one dialogue item for the dialogue system to work."]
+	return []
